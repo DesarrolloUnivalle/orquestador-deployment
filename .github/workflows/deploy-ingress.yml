@@ -2,8 +2,6 @@ name: Deploy Ingress to GKE
 
 on:
   push:
-    paths:
-      - ingress.yml
     branches:
       - main
 
