@@ -20,23 +20,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Authenticate with Google Cloud
+    - name: Authenticate with GCP
       uses: google-github-actions/auth@v2
       with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-    - name: Set up gcloud
-      uses: google-github-actions/setup-gcloud@v2
-    
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
     - name: Set up gcloud CLI
       uses: google-github-actions/setup-gcloud@v2
       with:
           project_id: gcp-despliegue-desarrollo 
           install_components: 'gke-gcloud-auth-plugin'
-
     - name: Configure kubectl
       run: |
-        gcloud container clusters get-credentials cluster-desarrollo --zone us-central1-c --project gcp-despliegue-desarrollocd 
+          gcloud container clusters get-credentials cluster-desarrollo --zone us-central1-c --project gcp-despliegue-desarrollo
+
     - name: Deploy Ingress
       run: |
         kubectl apply -n $K8S_NAMESPACE -f ingress.yml
