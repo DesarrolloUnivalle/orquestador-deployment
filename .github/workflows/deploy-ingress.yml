@@ -9,7 +9,7 @@ env:
   PROJECT_ID:  gcp-despliegue-desarrollo
   CLUSTER_NAME: cluster-desarrollo
   CLUSTER_ZONE: us-central1-c
-  K8S_DIR: kubernetes
+  K8S_DIR: Kubernetes
 
 jobs:
   deploy:
