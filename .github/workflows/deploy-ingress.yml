@@ -15,7 +15,6 @@ jobs:
   deploy:
     name: Deploy Ingress
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -32,7 +31,6 @@ jobs:
     - name: Configure kubectl
       run: |
           gcloud container clusters get-credentials cluster-desarrollo --zone us-central1-c --project gcp-despliegue-desarrollo
-
     - name: Deploy Ingress
       run: |
         kubectl apply -f ${{ env.K8S_DIR }}/ingress.yml
