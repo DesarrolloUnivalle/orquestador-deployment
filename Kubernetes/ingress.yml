@@ -1,0 +1,53 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microservices-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "gce" # Usa el controlador de GKE
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /usuarios
+            pathType: Prefix
+            backend:
+              service:
+                name: usuarios-service
+                port:
+                  number: 8080
+          - path: /productos
+            pathType: Prefix
+            backend:
+              service:
+                name: productos-service
+                port:
+                  number: 8080
+          - path: /ordenes
+            pathType: Prefix
+            backend:
+              service:
+                name: ordenes-service
+                port:
+                  number: 8080
+          - path: /entregas
+            pathType: Prefix
+            backend:
+              service:
+                name: entregas-service
+                port:
+                  number: 8083
+          - path: /gateway
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway-service
+                port:
+                  number: 9000
+          - path: /discovery
+            pathType: Prefix
+            backend:
+              service:
+                name: discovery-server-service
+                port:
+                  number: 8761
